@@ -5,7 +5,7 @@ const GlobalStyle = createGlobalStyle`
 body {
   margin:0;
   font-family: sans-serif, Arial; 
-  background-color: ${colors.primary};
+  background-color: ${colors.bg.primary};
 }
 `;
 

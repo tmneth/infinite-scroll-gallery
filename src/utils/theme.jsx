@@ -9,7 +9,11 @@ export const sharedPreferences = {
 };
 
 export const colors = {
-  primary: "#ffffff",
-  primaryAlt: "#24336c",
-  secondary: "#f5f5f5",
+  bg: {
+    primary: "#ffffff",
+  },
+  text: {
+    primary: "#ffffff",
+    secondary: "#000000",
+  },
 };

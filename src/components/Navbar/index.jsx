@@ -6,6 +6,10 @@ const Navbar = ({ setTag }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
 
+  /*
+    If the input is not empty, when toggled, we are setting new tag.
+    The input is then cleared, and user is redirected to 'All' page.
+  */
   const handleSearch = () => {
     if (searchTerm) {
       setTag(searchTerm);
@@ -14,6 +18,7 @@ const Navbar = ({ setTag }) => {
     }
   };
 
+  // Toggle search by pressing enter
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
       handleSearch();
@@ -27,7 +32,7 @@ const Navbar = ({ setTag }) => {
           <S.Link to="all">All</S.Link>
         </S.NavMenuItem>
         <S.NavMenuItem>
-          <S.Link to="favorites">Favourite</S.Link>
+          <S.Link to="favourites">Favourite</S.Link>
         </S.NavMenuItem>
         <S.NavMenuItem>
           <S.SearchContainer>

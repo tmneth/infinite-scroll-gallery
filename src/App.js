@@ -6,7 +6,7 @@ import Navbar from "./components/Navbar";
 
 const YOUR_API_KEY = "5d632f69197140e4b010732022e8dbc4";
 
-function App() {
+const App = () => {
   const [images, setImages] = useState([]);
   const [tag, setTag] = useState("Cat");
   const [favourites, setFavourites] = useState([]);
@@ -52,7 +52,7 @@ function App() {
           }
         />
         <Route
-          path="/favorites"
+          path="/favourites"
           element={
             <Gallery
               images={favourites}
@@ -65,6 +65,6 @@ function App() {
       </Routes>
     </>
   );
-}
+};
 
 export default App;
