@@ -1,8 +1,8 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as S from "./styles";
 
-const Navbar = ({ setTag }) => {
+function Navbar({ setTag }) {
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
 
@@ -29,10 +29,13 @@ const Navbar = ({ setTag }) => {
     <S.NavContainer>
       <S.NavMenu>
         <S.NavMenuItem>
-          <S.Link to="all">All</S.Link>
+          <S.Link to="all">Explore</S.Link>
         </S.NavMenuItem>
         <S.NavMenuItem>
           <S.Link to="favourites">Favourite</S.Link>
+        </S.NavMenuItem>
+        <S.NavMenuItem>
+          <S.Link to="favourites">Tags</S.Link>
         </S.NavMenuItem>
         <S.NavMenuItem>
           <S.SearchContainer>
@@ -53,6 +56,6 @@ const Navbar = ({ setTag }) => {
       </S.NavMenu>
     </S.NavContainer>
   );
-};
+}
 
 export default Navbar;

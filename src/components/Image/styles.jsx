@@ -31,17 +31,17 @@ export const Backdrop = styled.div`
 
 export const ImgContainer = styled.div`
   position: relative;
-  height: 230px;
+  height: 14.375rem;
   border-radius: 3px;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   &:hover ${Backdrop} {
     opacity: 1;
   }
   @media (max-width: ${sharedPreferences.breakpoints.md}) {
-    height: 250px;
+    /* height: 250px; */
   }
   @media (max-width: ${sharedPreferences.breakpoints.sm}) {
-    height: 500px;
+    /* height: 500px; */
   }
 `;
 

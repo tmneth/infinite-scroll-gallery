@@ -2,9 +2,9 @@ import React from "react";
 import * as S from "./styles";
 import Image from "../Image";
 
-const Gallery = ({ images, setFavourites, favourites }) => {
+function Gallery({ images, setFavourites, favourites }) {
   return (
-    <S.Wrapper>
+    <S.Container>
       {images.map((image) => (
         <Image
           image={image}
@@ -12,8 +12,8 @@ const Gallery = ({ images, setFavourites, favourites }) => {
           favourites={favourites}
         />
       ))}
-    </S.Wrapper>
+    </S.Container>
   );
-};
+}
 
 export default Gallery;

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import * as S from "./styles.jsx";
+import * as S from "./styles";
 
-const Image = ({ image, setFavourites, favourites }) => {
+function Image({ image, setFavourites, favourites }) {
   const [isFavourite, setIsFavourite] = useState(false);
 
   /*
     By using the favourites array as a dependency for the useEffect,
-    the code ensures that the localStorage item is updated whenever the favourites array changes. 
+    the code ensures that the localStorage item is updated whenever the favourites array changes.
   */
   useEffect(() => {
     localStorage.setItem("favourites", JSON.stringify(favourites));
@@ -25,10 +25,9 @@ const Image = ({ image, setFavourites, favourites }) => {
   */
   const truncateStr = (str) => {
     if (str.length > 20) {
-      return str.substring(0, 20) + "...";
-    } else {
-      return str;
+      return `${str.substring(0, 20)}...`;
     }
+    return str;
   };
 
   /*
@@ -37,27 +36,33 @@ const Image = ({ image, setFavourites, favourites }) => {
   */
   const handleFavorite = () => {
     if (isFavourite) {
-      setFavourites((favourites) =>
+      setFavourites(
         favourites.filter((favourite) => favourite.id !== image.id)
       );
     } else {
-      setFavourites((favourites) => [...favourites, image]);
+      setFavourites([...favourites, image]);
     }
     setIsFavourite(!isFavourite);
   };
 
   return (
     <S.ImgContainer>
-      <S.Img
-        key={image.id}
-        src={`https://live.staticflickr.com/${image.server}/${image.id}_${image.secret}_m.jpg`}
-        alt={image.title}
-      />
+      <picture>
+        <source
+          media="(min-width: 800px)"
+          srcSet={`https://live.staticflickr.com/${image.server}/${image.id}_${image.secret}_b.jpg`}
+        />
+        <S.Img
+          src={`https://live.staticflickr.com/${image.server}/${image.id}_${image.secret}_m.jpg`}
+          alt={image.title}
+        />
+      </picture>
+
       <S.Backdrop>
         <S.ImgTitle title={image.title}>{truncateStr(image.title)}</S.ImgTitle>
         <S.Separator />
-        <S.ImgAuthor title={image.owner}>
-          {truncateStr(image.owner)}
+        <S.ImgAuthor title={image.ownername}>
+          {truncateStr(image.ownername)}
         </S.ImgAuthor>
         <S.Button onClick={handleFavorite}>
           {isFavourite ? "Remove" : "Favourite"}
@@ -65,6 +70,6 @@ const Image = ({ image, setFavourites, favourites }) => {
       </S.Backdrop>
     </S.ImgContainer>
   );
-};
+}
 
 export default Image;

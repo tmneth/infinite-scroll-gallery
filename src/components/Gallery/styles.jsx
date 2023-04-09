@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { sharedPreferences } from "../../utils/theme";
 
-export const Wrapper = styled.main`
+export const Container = styled.main`
   padding: 1.75rem;
   padding-bottom: calc(5rem + 1.75rem);
   display: grid;
