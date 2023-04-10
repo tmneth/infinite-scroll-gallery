@@ -20,9 +20,9 @@ export const generateEndpoint = (currentPage, tag) => {
     extras: ["url_q", "owner_name"],
   };
 
-  if (tag) {
+  if (tag !== "all") {
     queryParams.method = "flickr.photos.search";
-    queryParams.tags = `${tag},dog`;
+    queryParams.tags = `${tag}`;
   } else {
     queryParams.method = "flickr.interestingness.getList";
   }

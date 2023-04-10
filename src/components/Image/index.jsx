@@ -4,7 +4,6 @@ import * as S from "./styles";
 function Image({ image, setFavourites, favourites }) {
   const [isFavourite, setIsFavourite] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
-  // const [showBackdrop, setShowBackdrop] = useState(false);
 
   const handleMouseOver = () => {
     setIsHovering(true);
@@ -13,21 +12,6 @@ function Image({ image, setFavourites, favourites }) {
   const handleMouseOut = () => {
     setIsHovering(false);
   };
-
-  /*
-    By using the favourites array as a dependency for the useEffect,
-    the code ensures that the localStorage item is updated whenever the favourites array changes.
-  */
-  useEffect(() => {
-    localStorage.setItem("favourites", JSON.stringify(favourites));
-  }, [favourites]);
-
-  useEffect(() => {
-    const isImageAlreadyFavorited = favourites.some(
-      (favouriteImage) => favouriteImage.id === image.id
-    );
-    setIsFavourite(isImageAlreadyFavorited);
-  }, [favourites, image]);
 
   /*
     Since the title or author name could be too long, we truncate both strings.
@@ -54,6 +38,13 @@ function Image({ image, setFavourites, favourites }) {
     }
     setIsFavourite(!isFavourite);
   };
+
+  useEffect(() => {
+    const isImageAlreadyFavorited = favourites.some(
+      (favouriteImage) => favouriteImage.id === image.id
+    );
+    setIsFavourite(isImageAlreadyFavorited);
+  }, [favourites, image]);
 
   return (
     <S.ImgContainer onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>

@@ -2,20 +2,33 @@ import styled from "styled-components";
 import { colors, sharedPreferences } from "../../utils/theme";
 
 export const Img = styled.img`
-  border-radius: 3px;
+  border-radius: 4px;
   width: 100%;
   height: 100%;
   object-fit: cover;
 `;
 
+export const ImgContainer = styled.div`
+  border-radius: 4px;
+  position: relative;
+  height: 14.375rem;
+  box-shadow: rgba(0, 0, 0, 0.2) 1.75px 1.75px 1.75px;
+  @media (max-width: ${sharedPreferences.breakpoints.md}) {
+    height: 20.375rem;
+  }
+  @media (max-width: ${sharedPreferences.breakpoints.sm}) {
+    height: 27.375rem;
+  }
+`;
+
 export const Backdrop = styled.div`
   opacity: ${(props) => (props.isHovering ? 1 : 0)};
-  border-radius: 3px;
   top: 0;
   bottom: 0;
   right: 0;
   left: 0;
   position: absolute;
+  border-radius: 4px;
   width: 100%;
   height: 100%;
   display: flex;
@@ -27,19 +40,6 @@ export const Backdrop = styled.div`
   text-align: center;
   background-color: rgba(1, 1, 1, 0.5);
   transition: opacity 0.125s ease-in-out;
-`;
-
-export const ImgContainer = styled.div`
-  border-radius: 5px;
-  position: relative;
-  height: 14.375rem;
-  box-shadow: rgba(0, 0, 0, 0.2) 1.75px 1.75px 1.75px;
-  @media (max-width: ${sharedPreferences.breakpoints.md}) {
-    height: 20.375rem;
-  }
-  @media (max-width: ${sharedPreferences.breakpoints.sm}) {
-    height: 27.375rem;
-  }
 `;
 
 export const Button = styled.button`
@@ -56,16 +56,24 @@ export const Button = styled.button`
   transition: background-color 0.2s ease-out;
   &:hover {
     background-color: ${colors.bg.primary};
-    color: #000000;
+    color: ${colors.text.secondary};
   }
 `;
 
 export const ImgTitle = styled.h4`
   margin: 0;
+  font-size: 18px;
+  @media (max-width: ${sharedPreferences.breakpoints.sm}) {
+    font-size: 24px;
+  }
 `;
 export const ImgAuthor = styled.h5`
+  font-size: 16px;
   margin: 0;
   font-style: italic;
+  @media (max-width: ${sharedPreferences.breakpoints.sm}) {
+    font-size: 20px;
+  }
 `;
 export const Separator = styled.hr`
   background: ${colors.bg.primary};

@@ -11,6 +11,7 @@ export const sharedPreferences = {
 export const colors = {
   bg: {
     primary: "#ffffff",
+    secondary: "#000000",
   },
   text: {
     primary: "#ffffff",

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { colors } from "../../utils/theme";
 
 // https://cssloaders.github.io/
 const StyledLoader = styled.span`
@@ -11,7 +12,7 @@ const StyledLoader = styled.span`
   margin-bottom: 1.75rem;
   position: relative;
   border-radius: 4px;
-  color: #000;
+  color: ${colors.bg.secondary};
   opacity: 0.5;
   background: currentColor;
   box-sizing: border-box;

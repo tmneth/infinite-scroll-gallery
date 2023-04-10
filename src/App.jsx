@@ -3,10 +3,9 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import GlobalStyle from "./globalStyles";
 import Navbar from "./components/Navbar";
 import Explore from "./views/Explore";
-import Favourites from "./views/Favourite";
+import Favourites from "./views/Favourites";
 
 function App() {
-  const [tag, setTag] = useState("");
   const [favourites, setFavourites] = useState([]);
 
   // Load favourites from local storage on initial render
@@ -21,25 +20,25 @@ function App() {
     }
   }, []);
 
+  // Update local storage when favourites change
+  useEffect(() => {
+    localStorage.setItem("favourites", JSON.stringify(favourites));
+  }, [favourites]);
+
   return (
     <>
       <GlobalStyle />
-      <Navbar setTag={setTag} />
+      <Navbar />
       <Routes>
         <Route
-          path="/explore"
-          element={<Explore {...{ tag, favourites, setFavourites }} />}
-        />
-        <Route
-          path="/search/:tag"
-          element={<Explore {...{ tag, favourites, setFavourites }} />}
+          path="/explore/:tag"
+          element={<Explore {...{ favourites, setFavourites }} />}
         />
         <Route
           path="/favourites"
           element={<Favourites {...{ favourites, setFavourites }} />}
         />
-        {/* Default route - redirect to explore */}
-        <Route path="*" element={<Navigate to="/explore" replace />} />
+        <Route path="*" element={<Navigate to="/explore/all" replace />} />
       </Routes>
     </>
   );

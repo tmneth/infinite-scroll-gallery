@@ -2,23 +2,16 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as S from "./styles";
 
-function Navbar({ setTag }) {
+function Navbar() {
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
 
-  /*
-    If the input is not empty, when toggled, we are setting new tag.
-    The input is then cleared, and user is redirected to 'All' page.
-  */
   const handleSearch = () => {
     if (searchTerm) {
-      setTag(searchTerm);
-      navigate(`/search/${searchTerm}`);
+      navigate(`/explore/${searchTerm}`);
       setSearchTerm("");
     }
   };
-
-  const handleExplore = () => setTag("");
 
   // Toggle search by pressing enter
   const handleKeyDown = (event) => {
@@ -31,7 +24,7 @@ function Navbar({ setTag }) {
     <S.NavContainer>
       <S.NavMenu>
         <S.NavMenuItem>
-          <S.Link onClick={handleExplore} to="explore" aria-label="Explore">
+          <S.Link to="explore/all" aria-label="Explore">
             <S.NavSpan>Explore</S.NavSpan>
             <S.NavIcon className="fa-brands fa-wpexplorer fa-xl" />
           </S.Link>
