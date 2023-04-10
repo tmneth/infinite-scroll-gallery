@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
-import { colors } from "../../utils/theme";
+import { colors, sharedPreferences } from "../../utils/theme";
 
 export const NavContainer = styled.nav`
   width: 100%;
   position: absolute;
-  bottom: 0;
-  margin-bottom: 1.75rem;
+  top: 0;
+  margin-top: 1.75rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -26,10 +26,16 @@ export const NavMenu = styled.ul`
   padding: 0.5rem;
   list-style: none;
   font-weight: 600;
+  height: 2.25rem;
   transition: box-shadow 0.1s ease-out;
   &:hover {
     box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.5em,
       rgba(90, 125, 188, 0.05) 0px 1em 1em;
+  }
+  @media (max-width: ${sharedPreferences.breakpoints.sm}) {
+    width: 100%;
+    margin: 0 2.125rem;
+    flex-direction: row-reverse;
   }
 `;
 
@@ -46,6 +52,13 @@ export const NavMenuItem = styled.li`
   &:last-child {
     border-right: none;
   }
+  @media (max-width: ${sharedPreferences.breakpoints.sm}) {
+    border-right: none;
+    padding: 0.2rem 0.5rem;
+    &:last-child {
+      width: 100%;
+    }
+  }
 `;
 
 export const Link = styled(NavLink)`
@@ -56,7 +69,6 @@ export const Link = styled(NavLink)`
   justify-content: center;
   align-items: center;
   margin: 0;
-  border-radius: 10px;
   text-decoration: none;
   transition: all 0.2s ease-in-out;
   &.active {
@@ -70,21 +82,33 @@ export const Link = styled(NavLink)`
 export const SearchButton = styled.button`
   background-color: inherit;
   border: none;
+  padding: 0;
+  margin: 0;
 `;
 
 export const SearchContainer = styled.div`
+  align-items: stretch;
   display: flex;
   align-items: center;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 1rem;
+  @media (max-width: ${sharedPreferences.breakpoints.sm}) {
+    flex-direction: row-reverse;
+  }
 `;
 
 export const NavSearch = styled.input`
-  width: 5rem;
-  background-color: transparent;
+  /* d: ${(props) => props.placeholder.length}ch; */
+  width: 5.25rem;
   border: none;
-  padding: 5px;
+  /* padding: 5px; */
   outline: none;
   font-weight: 600;
   font-size: 1em;
+  @media (max-width: ${sharedPreferences.breakpoints.sm}) {
+    width: 100%;
+  }
 `;
 
 export const SearchIcon = styled.i`
@@ -92,12 +116,25 @@ export const SearchIcon = styled.i`
   color: #000000;
   display: flex;
   align-items: center;
-  width: 25px;
-  height: 25px;
+  /* height: 30px; */
   border-radius: 100%;
   justify-content: center;
   transition: opacity 0.1s ease-out;
   &:hover {
     opacity: 0.7;
+  }
+`;
+
+export const NavIcon = styled(SearchButton)`
+  cursor: pointer;
+  display: none;
+  @media (max-width: ${sharedPreferences.breakpoints.sm}) {
+    display: flex;
+  }
+`;
+
+export const NavSpan = styled.span`
+  @media (max-width: ${sharedPreferences.breakpoints.sm}) {
+    display: none;
   }
 `;

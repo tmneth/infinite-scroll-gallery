@@ -5,8 +5,9 @@ import Image from "../Image";
 function Gallery({ images, setFavourites, favourites }) {
   return (
     <S.Container>
-      {images.map((image) => (
+      {images.map((image, index) => (
         <Image
+          key={index}
           image={image}
           setFavourites={setFavourites}
           favourites={favourites}

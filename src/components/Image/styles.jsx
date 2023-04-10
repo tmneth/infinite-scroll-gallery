@@ -2,15 +2,15 @@ import styled from "styled-components";
 import { colors, sharedPreferences } from "../../utils/theme";
 
 export const Img = styled.img`
-  border-radius: inherit;
+  border-radius: 3px;
   width: 100%;
   height: 100%;
   object-fit: cover;
 `;
 
 export const Backdrop = styled.div`
-  opacity: 0;
-  border-radius: inherit;
+  opacity: ${(props) => (props.isHovering ? 1 : 0)};
+  border-radius: 3px;
   top: 0;
   bottom: 0;
   right: 0;
@@ -26,22 +26,19 @@ export const Backdrop = styled.div`
   color: ${colors.text.primary};
   text-align: center;
   background-color: rgba(1, 1, 1, 0.5);
-  transition: opacity 0.1s ease-in-out;
+  transition: opacity 0.125s ease-in-out;
 `;
 
 export const ImgContainer = styled.div`
+  border-radius: 5px;
   position: relative;
   height: 14.375rem;
-  border-radius: 3px;
-  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-  &:hover ${Backdrop} {
-    opacity: 1;
-  }
+  box-shadow: rgba(0, 0, 0, 0.2) 1.75px 1.75px 1.75px;
   @media (max-width: ${sharedPreferences.breakpoints.md}) {
-    /* height: 250px; */
+    height: 20.375rem;
   }
   @media (max-width: ${sharedPreferences.breakpoints.sm}) {
-    /* height: 500px; */
+    height: 27.375rem;
   }
 `;
 
@@ -63,11 +60,12 @@ export const Button = styled.button`
   }
 `;
 
-export const ImgTitle = styled.h3`
+export const ImgTitle = styled.h4`
   margin: 0;
 `;
 export const ImgAuthor = styled.h5`
   margin: 0;
+  font-style: italic;
 `;
 export const Separator = styled.hr`
   background: ${colors.bg.primary};

@@ -13,10 +13,12 @@ function Navbar({ setTag }) {
   const handleSearch = () => {
     if (searchTerm) {
       setTag(searchTerm);
+      navigate(`/search/${searchTerm}`);
       setSearchTerm("");
-      navigate("/all");
     }
   };
+
+  const handleExplore = () => setTag("");
 
   // Toggle search by pressing enter
   const handleKeyDown = (event) => {
@@ -29,13 +31,16 @@ function Navbar({ setTag }) {
     <S.NavContainer>
       <S.NavMenu>
         <S.NavMenuItem>
-          <S.Link to="all">Explore</S.Link>
+          <S.Link onClick={handleExplore} to="explore" aria-label="Explore">
+            <S.NavSpan>Explore</S.NavSpan>
+            <S.NavIcon className="fa-brands fa-wpexplorer fa-xl" />
+          </S.Link>
         </S.NavMenuItem>
         <S.NavMenuItem>
-          <S.Link to="favourites">Favourite</S.Link>
-        </S.NavMenuItem>
-        <S.NavMenuItem>
-          <S.Link to="favourites">Tags</S.Link>
+          <S.Link to="favourites" aria-label="Favourites">
+            <S.NavSpan>Favourites</S.NavSpan>
+            <S.NavIcon className="fa-regular fa-heart fa-xl" />
+          </S.Link>
         </S.NavMenuItem>
         <S.NavMenuItem>
           <S.SearchContainer>
@@ -44,10 +49,11 @@ function Navbar({ setTag }) {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               onKeyDown={handleKeyDown}
+              aria-label="Search images by tag"
             />
-            <S.SearchButton>
+            <S.SearchButton aria-label="search-button">
               <S.SearchIcon
-                className="fa-solid fa-magnifying-glass"
+                className="fa-solid fa-magnifying-glass fa-lg"
                 onClick={handleSearch}
               />
             </S.SearchButton>

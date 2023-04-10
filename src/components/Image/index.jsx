@@ -3,6 +3,16 @@ import * as S from "./styles";
 
 function Image({ image, setFavourites, favourites }) {
   const [isFavourite, setIsFavourite] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
+  // const [showBackdrop, setShowBackdrop] = useState(false);
+
+  const handleMouseOver = () => {
+    setIsHovering(true);
+  };
+
+  const handleMouseOut = () => {
+    setIsHovering(false);
+  };
 
   /*
     By using the favourites array as a dependency for the useEffect,
@@ -46,10 +56,10 @@ function Image({ image, setFavourites, favourites }) {
   };
 
   return (
-    <S.ImgContainer>
+    <S.ImgContainer onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
       <picture>
         <source
-          media="(min-width: 800px)"
+          media="(min-width: 420px)"
           srcSet={`https://live.staticflickr.com/${image.server}/${image.id}_${image.secret}_b.jpg`}
         />
         <S.Img
@@ -58,14 +68,24 @@ function Image({ image, setFavourites, favourites }) {
         />
       </picture>
 
-      <S.Backdrop>
-        <S.ImgTitle title={image.title}>{truncateStr(image.title)}</S.ImgTitle>
+      <S.Backdrop isHovering={isHovering}>
+        <S.ImgTitle aria-label={`Title: ${image.title}`} title={image.title}>
+          {truncateStr(image.title)}
+        </S.ImgTitle>
         <S.Separator />
-        <S.ImgAuthor title={image.ownername}>
+        <S.ImgAuthor
+          aria-label={`Author: ${image.ownername}`}
+          title={image.ownername}
+        >
           {truncateStr(image.ownername)}
         </S.ImgAuthor>
-        <S.Button onClick={handleFavorite}>
-          {isFavourite ? "Remove" : "Favourite"}
+        <S.Button
+          onClick={handleFavorite}
+          aria-label={
+            isFavourite ? "unfavourite-button-label" : "favourite-button-label"
+          }
+        >
+          {isFavourite ? "Unfavourite" : "Favourite"}
         </S.Button>
       </S.Backdrop>
     </S.ImgContainer>
