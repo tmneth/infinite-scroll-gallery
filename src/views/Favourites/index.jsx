@@ -1,13 +1,6 @@
 import React from "react";
-import styled from "styled-components";
 import Gallery from "../../components/Gallery";
-
-const Message = styled.h2`
-  padding-top: calc(3.25rem + 1.75rem * 2);
-  text-align: center;
-  display: flex;
-  justify-content: center;
-`;
+import Error from "../../components/Warning";
 
 function Favourites({ favourites, setFavourites }) {
   return favourites.length ? (
@@ -17,7 +10,7 @@ function Favourites({ favourites, setFavourites }) {
       favourites={favourites}
     />
   ) : (
-    <Message>Nothing here yet!</Message>
+    <Error message="Nothing here yet!" />
   );
 }
 

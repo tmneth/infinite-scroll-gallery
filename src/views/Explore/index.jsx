@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Gallery from "../../components/Gallery";
 import Loader from "../../components/Loader";
+import WarningMessage from "../../components/Warning";
 import { generateEndpoint } from "../../utils/helpers";
 
 function Explore({ favourites, setFavourites }) {
   const [images, setImages] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
-
-  //   const location = useLocation();
+  const [isError, setIsError] = useState(false);
 
   const { tag } = useParams();
 
@@ -36,25 +36,24 @@ function Explore({ favourites, setFavourites }) {
 
   useEffect(() => {
     const loadImages = async () => {
+      setIsError(false);
+      setIsLoading(true);
       try {
-        setIsLoading(true);
         const response = await fetch(generateEndpoint(currentPage, tag));
         const data = await response.json();
 
         const newImages = data.photos.photo;
-        setImages((prevImages) =>
-          currentPage === 1 ? newImages : [...prevImages, ...newImages]
-        );
-
-        setIsLoading(false);
+        setImages((prevImages) => [...prevImages, ...newImages]);
       } catch (error) {
+        setIsError(true);
         console.log(error);
       }
+      setIsLoading(false);
     };
     loadImages();
   }, [currentPage, tag]);
 
-  return (
+  return !isError ? (
     <>
       <Gallery
         images={images}
@@ -63,6 +62,8 @@ function Explore({ favourites, setFavourites }) {
       />
       {isLoading && <Loader />}
     </>
+  ) : (
+    <WarningMessage message="Unable to get images, please try again later" />
   );
 }
 

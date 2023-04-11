@@ -12,9 +12,11 @@ export const colors = {
   bg: {
     primary: "#ffffff",
     secondary: "#000000",
+    warning: "#fff2cc",
   },
   text: {
     primary: "#ffffff",
     secondary: "#000000",
+    warning: "#a38f59",
   },
 };

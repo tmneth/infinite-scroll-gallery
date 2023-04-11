@@ -6,6 +6,8 @@ export const NavContainer = styled.nav`
   width: 100%;
   position: absolute;
   top: 0;
+  left: 0;
+  right: 0;
   margin-top: 1.75rem;
   display: flex;
   justify-content: center;

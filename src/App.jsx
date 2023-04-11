@@ -1,9 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
+import styled from "styled-components";
+import { sharedPreferences } from "./utils/theme";
 import GlobalStyle from "./globalStyles";
 import Navbar from "./components/Navbar";
 import Explore from "./views/Explore";
 import Favourites from "./views/Favourites";
+
+const AppContainer = styled.div`
+  max-width: ${sharedPreferences.pageWidth};
+  margin: 0 auto;
+  padding: calc(3.25rem + 1.75rem * 2) 1.75rem 0 1.75rem;
+`;
 
 function App() {
   const [favourites, setFavourites] = useState([]);
@@ -26,7 +34,7 @@ function App() {
   }, [favourites]);
 
   return (
-    <>
+    <AppContainer>
       <GlobalStyle />
       <Navbar />
       <Routes>
@@ -40,7 +48,7 @@ function App() {
         />
         <Route path="*" element={<Navigate to="/explore/all" replace />} />
       </Routes>
-    </>
+    </AppContainer>
   );
 }
 

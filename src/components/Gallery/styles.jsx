@@ -2,8 +2,7 @@ import styled from "styled-components";
 import { sharedPreferences } from "../../utils/theme";
 
 export const Container = styled.div`
-  padding: 1.75rem;
-  padding-top: calc(3.25rem + 1.75rem * 2);
+  padding-bottom: 1.75rem;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1.75rem;

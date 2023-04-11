@@ -15,8 +15,7 @@ Infinite scroll gallery project created using React.js
 
 ## UI Demo
 
-![_vault](client/public/assets/_vault.png)
-![_generator](client/public/assets/_generator.png)
+![desktop](img/desktop-demo.png)
 
 ## Project Setup
 
