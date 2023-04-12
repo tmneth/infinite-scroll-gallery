@@ -6,6 +6,7 @@ function Navbar() {
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
 
+  // Put searched tag into URL, to later retrieve as a URL parameter with React Router
   const handleSearch = () => {
     if (searchTerm) {
       navigate(`/explore/${searchTerm}`);
@@ -24,15 +25,21 @@ function Navbar() {
     <S.NavContainer>
       <S.NavMenu>
         <S.NavMenuItem>
-          <S.Link to="explore/all" aria-label="Explore">
+          <S.Link to="explore/all">
             <S.NavSpan>Explore</S.NavSpan>
-            <S.NavIcon className="fa-brands fa-wpexplorer fa-xl" />
+            <S.NavIcon
+              aria-label="explore"
+              className="fa-brands fa-wpexplorer fa-xl"
+            />
           </S.Link>
         </S.NavMenuItem>
         <S.NavMenuItem>
-          <S.Link to="favourites" aria-label="Favourites">
+          <S.Link to="favourites">
             <S.NavSpan>Favourites</S.NavSpan>
-            <S.NavIcon className="fa-regular fa-heart fa-xl" />
+            <S.NavIcon
+              aria-label="favourites"
+              className="fa-regular fa-heart fa-xl"
+            />
           </S.Link>
         </S.NavMenuItem>
         <S.NavMenuItem>
@@ -46,6 +53,8 @@ function Navbar() {
             />
             <S.SearchButton aria-label="search-button">
               <S.SearchIcon
+                focusable="false"
+                aria-hidden="true"
                 className="fa-solid fa-magnifying-glass fa-lg"
                 onClick={handleSearch}
               />

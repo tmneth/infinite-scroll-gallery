@@ -7,8 +7,7 @@ Infinite scroll gallery project created using React.js
 - Explore page to browse photos from Flickr home page
 - Search functionality that lets users search photos by a specific tag
 - Infinite scroll to load more photos as the user scrolls down the page
-- Ability to save photos to favorites
-- Ability to remove photos from favorites
+- Ability to add/remove images to/from favourites
 - Favorites page to view saved photos (local browser storage is being used)
 - Loading spinner that indicates when new photos are being fetched
 - Proper responsive UI for all screens
@@ -25,7 +24,7 @@ Run the following command from the root directory
 cd infinite-scroll & npm install
 ```
 
-Once all the dependencies were installed start the client
+Once all the dependencies were installed start the app
 
 ```console
 npm run start
@@ -33,6 +32,6 @@ npm run start
 
 Although the API key is provided, you can change it in .env file in root directory
 
-```js
+```console
 REACT_APP_API_KEY=<your Flickr API key>
 ```

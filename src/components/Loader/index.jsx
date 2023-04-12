@@ -9,7 +9,6 @@ const StyledLoader = styled.span`
   height: 12px;
   display: block;
   margin: auto;
-  margin-bottom: 1.75rem;
   position: relative;
   border-radius: 4px;
   color: ${colors.bg.secondary};

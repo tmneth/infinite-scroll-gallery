@@ -6,12 +6,7 @@ function Gallery({ images, setFavourites, favourites }) {
   return (
     <S.Container>
       {images.map((image, index) => (
-        <Image
-          key={index}
-          image={image}
-          setFavourites={setFavourites}
-          favourites={favourites}
-        />
+        <Image {...{ image, setFavourites, favourites }} key={index} />
       ))}
     </S.Container>
   );

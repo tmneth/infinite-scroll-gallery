@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { sharedPreferences } from "../../utils/theme";
 
-export const Container = styled.div`
+export const Container = styled.main`
   padding-bottom: 1.75rem;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));

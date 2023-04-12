@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import styled from "styled-components";
-import { sharedPreferences } from "./utils/theme";
 import GlobalStyle from "./globalStyles";
 import Navbar from "./components/Navbar";
 import Explore from "./views/Explore";
 import Favourites from "./views/Favourites";
+import { sharedPreferences } from "./utils/theme";
 
-const AppContainer = styled.div`
+const StyledAppContainer = styled.div`
   max-width: ${sharedPreferences.pageWidth};
   margin: 0 auto;
-  padding: calc(3.25rem + 1.75rem * 2) 1.75rem 0 1.75rem;
+  padding: calc(3.25rem + 1.75rem * 2) 1.75rem 1.75rem;
 `;
 
 function App() {
@@ -30,11 +30,15 @@ function App() {
 
   // Update local storage when favourites change
   useEffect(() => {
-    localStorage.setItem("favourites", JSON.stringify(favourites));
+    try {
+      localStorage.setItem("favourites", JSON.stringify(favourites));
+    } catch (error) {
+      console.error("Error updating local storage:", error);
+    }
   }, [favourites]);
 
   return (
-    <AppContainer>
+    <StyledAppContainer>
       <GlobalStyle />
       <Navbar />
       <Routes>
@@ -48,7 +52,7 @@ function App() {
         />
         <Route path="*" element={<Navigate to="/explore/all" replace />} />
       </Routes>
-    </AppContainer>
+    </StyledAppContainer>
   );
 }
 

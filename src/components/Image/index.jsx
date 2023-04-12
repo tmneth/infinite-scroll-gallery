@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import * as S from "./styles";
+import { sharedPreferences } from "../../utils/theme";
 
 function Image({ image, setFavourites, favourites }) {
   const [isFavourite, setIsFavourite] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
 
+  // Handle mouse hover events
   const handleMouseOver = () => {
     setIsHovering(true);
   };
@@ -13,32 +15,20 @@ function Image({ image, setFavourites, favourites }) {
     setIsHovering(false);
   };
 
-  /*
-    Since the title or author name could be too long, we truncate both strings.
-    However, full string can still be displayed, by simply hovering over the text.
-  */
-  const truncateStr = (str) => {
-    if (str.length > 20) {
-      return `${str.substring(0, 20)}...`;
-    }
-    return str;
-  };
+  // Truncate string to 20 characters
+  const truncateStr = (str) =>
+    str.length > 20 ? `${str.substring(0, 20)}...` : str;
 
-  /*
-    This function toggles the state of a boolean variable isFavourite and updates a list of
-    favourites based on whether an image object is already present in the list or not.
-  */
+  // Add/remove image to/from favourites
   const handleFavorite = () => {
-    if (isFavourite) {
-      setFavourites(
-        favourites.filter((favourite) => favourite.id !== image.id)
-      );
-    } else {
-      setFavourites([...favourites, image]);
-    }
+    const updatedFavourites = isFavourite
+      ? favourites.filter((favourite) => favourite.id !== image.id)
+      : [...favourites, image];
+    setFavourites(updatedFavourites);
     setIsFavourite(!isFavourite);
   };
 
+  // Set initial favourite status on load or on favourites update
   useEffect(() => {
     const isImageAlreadyFavorited = favourites.some(
       (favouriteImage) => favouriteImage.id === image.id
@@ -49,8 +39,9 @@ function Image({ image, setFavourites, favourites }) {
   return (
     <S.ImgContainer onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
       <picture>
+        {/* Serve worse quality images for smaller screens */}
         <source
-          media="(min-width: 420px)"
+          media={`(min-width: ${sharedPreferences.breakpoints.xs})`}
           srcSet={`https://live.staticflickr.com/${image.server}/${image.id}_${image.secret}_b.jpg`}
         />
         <S.Img

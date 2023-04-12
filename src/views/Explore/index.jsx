@@ -11,6 +11,7 @@ function Explore({ favourites, setFavourites }) {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
+  // Get the tag parameter from the URL
   const { tag } = useParams();
 
   // Load more images when the user scrolls to the bottom of the page
@@ -29,11 +30,13 @@ function Explore({ favourites, setFavourites }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [images]);
 
+  // Reset images and current page when tag changes
   useEffect(() => {
     setImages([]);
     setCurrentPage(1);
   }, [tag]);
 
+  // Load images from the Flickr API using the current page and tag
   useEffect(() => {
     const loadImages = async () => {
       setIsError(false);
@@ -42,8 +45,7 @@ function Explore({ favourites, setFavourites }) {
         const response = await fetch(generateEndpoint(currentPage, tag));
         const data = await response.json();
 
-        const newImages = data.photos.photo;
-        setImages((prevImages) => [...prevImages, ...newImages]);
+        setImages((prevImages) => [...prevImages, ...data.photos.photo]);
       } catch (error) {
         setIsError(true);
         console.log(error);

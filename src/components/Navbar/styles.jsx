@@ -4,7 +4,6 @@ import { colors, sharedPreferences } from "../../utils/theme";
 
 export const NavContainer = styled.nav`
   width: 100%;
-  position: absolute;
   top: 0;
   left: 0;
   right: 0;
@@ -36,7 +35,7 @@ export const NavMenu = styled.ul`
   }
   @media (max-width: ${sharedPreferences.breakpoints.sm}) {
     width: 100%;
-    margin: 0 2.5rem;
+    margin: 0 3rem;
     flex-direction: row-reverse;
   }
 `;
@@ -82,10 +81,7 @@ export const SearchButton = styled.button`
 `;
 
 export const SearchContainer = styled.div`
-  align-items: stretch;
   display: flex;
-  align-items: center;
-  align-items: stretch;
   justify-content: space-between;
   gap: 1rem;
   @media (max-width: ${sharedPreferences.breakpoints.sm}) {
@@ -98,12 +94,14 @@ export const NavSearch = styled.input`
   width: 5.25rem;
   border: none;
   outline: none;
+  color: black;
   font-weight: 600;
   font-size: 1em;
   @media (max-width: ${sharedPreferences.breakpoints.sm}) {
     width: 100%;
   }
-  ::placeholder {
+  &::placeholder {
+    color: ${colors.text.secondary};
     opacity: 0.5;
   }
 `;
@@ -113,8 +111,8 @@ export const SearchIcon = styled.i`
   color: inherit;
   display: flex;
   align-items: center;
-  border-radius: 100%;
   justify-content: center;
+  border-radius: 100%;
   transition: opacity 0.1s ease-out;
   opacity: 0.5;
   &:hover {

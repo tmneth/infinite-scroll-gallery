@@ -2,17 +2,17 @@ import styled from "styled-components";
 import { colors, sharedPreferences } from "../../utils/theme";
 
 export const Img = styled.img`
-  border-radius: 4px;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 0.3rem;
 `;
 
 export const ImgContainer = styled.div`
-  border-radius: 4px;
   position: relative;
   height: 14.375rem;
   box-shadow: rgba(0, 0, 0, 0.2) 1.75px 1.75px 1.75px;
+  border-radius: 0.3rem;
   @media (max-width: ${sharedPreferences.breakpoints.md}) {
     height: 20.375rem;
   }
@@ -28,7 +28,6 @@ export const Backdrop = styled.div`
   right: 0;
   left: 0;
   position: absolute;
-  border-radius: 4px;
   width: 100%;
   height: 100%;
   display: flex;
@@ -40,19 +39,20 @@ export const Backdrop = styled.div`
   text-align: center;
   background-color: rgba(1, 1, 1, 0.5);
   transition: opacity 0.125s ease-in-out;
+  border-radius: 0.3rem;
 `;
 
 export const Button = styled.button`
   cursor: pointer;
-  padding: 10px;
+  padding: 0.6rem;
   font-size: 1em;
-  border-radius: 20px;
+  border-radius: 1.25rem;
   border: 2px solid ${colors.bg.primary};
   opacity: 0.85;
   background: transparent;
   color: ${colors.text.primary};
   font-weight: 600;
-  margin-top: 20px;
+  margin-top: 1.25rem;
   transition: background-color 0.2s ease-out;
   &:hover {
     background-color: ${colors.bg.primary};

@@ -1,6 +1,6 @@
 import React from "react";
 import Gallery from "../../components/Gallery";
-import Error from "../../components/Warning";
+import Warning from "../../components/Warning";
 
 function Favourites({ favourites, setFavourites }) {
   return favourites.length ? (
@@ -10,7 +10,7 @@ function Favourites({ favourites, setFavourites }) {
       favourites={favourites}
     />
   ) : (
-    <Error message="Nothing here yet!" />
+    <Warning message="Nothing here yet!" />
   );
 }
 
