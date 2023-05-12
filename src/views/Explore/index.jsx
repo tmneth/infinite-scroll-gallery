@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Gallery from "../../components/Gallery";
 import Loader from "../../components/Loader";
-import WarningMessage from "../../components/Warning";
+import Warning from "../../components/Warning";
 import { generateEndpoint } from "../../utils/helpers";
 
 function Explore({ favourites, setFavourites }) {
@@ -14,12 +14,15 @@ function Explore({ favourites, setFavourites }) {
   // Get the tag parameter from the URL
   const { tag } = useParams();
 
-  // Load more images when the user scrolls to the bottom of the page
   const handleScroll = () => {
+    // Get the current scroll position of the document
     const { scrollTop } = document.documentElement;
+    // Get the total height of the document
     const { scrollHeight } = document.documentElement;
 
+    // If the user has scrolled to the bottom of the page (with a buffer of 250 pixels)
     if (scrollTop + window.innerHeight >= scrollHeight - 250) {
+      // Increment page, to fetch images from the next page
       setCurrentPage(currentPage + 1);
     }
   };
@@ -28,7 +31,7 @@ function Explore({ favourites, setFavourites }) {
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [images]);
+  }, [handleScroll]);
 
   // Reset images and current page when tag changes
   useEffect(() => {
@@ -55,6 +58,12 @@ function Explore({ favourites, setFavourites }) {
     loadImages();
   }, [currentPage, tag]);
 
+  setTimeout(() => {
+    console.log("set timeout");
+  }, 0);
+
+  console.log("after set timeout");
+
   return !isError ? (
     <>
       <Gallery
@@ -65,7 +74,7 @@ function Explore({ favourites, setFavourites }) {
       {isLoading && <Loader />}
     </>
   ) : (
-    <WarningMessage message="Unable to get images, please try again later" />
+    <Warning message="Unable to get images, please try again later" />
   );
 }
 

@@ -9,7 +9,7 @@ import { sharedPreferences } from "./utils/theme";
 
 const StyledAppContainer = styled.div`
   max-width: ${sharedPreferences.pageWidth};
-  margin: 0 auto;
+  margin: auto;
   padding: calc(3.25rem + 1.75rem * 2) 1.75rem 1.75rem;
 `;
 

@@ -1,6 +1,6 @@
 import React from "react";
 import * as S from "./styles";
-import Image from "../Image";
+import Image from "./Image";
 
 function Gallery({ images, setFavourites, favourites }) {
   return (

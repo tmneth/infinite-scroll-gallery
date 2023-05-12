@@ -23,6 +23,7 @@
     ],
     "react/prop-types": 0,
     "import/prefer-default-export": "off",
-    "react/no-array-index-key": "off"
+    "react/no-array-index-key": "off",
+    "no-console": "off"
   }
 }
